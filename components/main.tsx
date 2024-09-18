@@ -305,19 +305,33 @@ function Main() {
           How It Works
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {["Upload Image", "AI Analysis", "Get Results"].map((step, index) => (
+          {[
+            {
+              title: "Upload Image",
+              description: "Start by uploading the image you want to analyze.",
+            },
+            {
+              title: "AI Analysis",
+              description:
+                "Our advanced AI technology analyzes the uploaded image.",
+            },
+            {
+              title: "Get Results",
+              description:
+                "Get detailed information about the image's contents.",
+            },
+          ].map((step, index) => (
             <div
               key={index}
-              className="transform rounded-xl bg-white p-6 shadow-md transition duration-300 ease-in-out hover:scale-[1.015]"
+              className="transform rounded-xl bg-white p-6 shadow-md transition duration-300 ease-in-out hover:shadow-xl"
             >
-              <div className="mb-4 text-4xl font-bold text-indigo-600">
+              <div className="mb-4 text-4xl font-extrabold text-indigo-600">
                 0{index + 1}
               </div>
-              <h3 className="mb-1 text-xl font-bold text-gray-800">{step}</h3>
-              <p className="text-gray-600">
-                Our advanced AI analyzes your uploaded image and provides
-                detailed information about its contents.
-              </p>
+              <h3 className="mb-1 text-xl font-bold text-gray-800">
+                {step.title}
+              </h3>
+              <p className="text-gray-600">{step.description}</p>
             </div>
           ))}
         </div>
@@ -330,22 +344,35 @@ function Main() {
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {[
-            "Accurate Identification",
-            "Detailed Information",
-            "Fast Results",
-            "User-Friendly Interface",
+            {
+              title: "Accurate Identification",
+              description:
+                "Our AI technology ensures accurate identification of objects within images.",
+            },
+            {
+              title: "Detailed Information",
+              description:
+                "Get detailed information about the objects identified in the image.",
+            },
+            {
+              title: "Fast Results",
+              description:
+                "Experience fast results with our optimized image processing algorithms.",
+            },
+            {
+              title: "User-Friendly Interface",
+              description:
+                "Our interface is designed to be easy to use, making image analysis accessible to everyone.",
+            },
           ].map((feature, index) => (
             <div
               key={index}
-              className="transform rounded-xl bg-white p-6 shadow-md transition duration-300 ease-in-out hover:scale-[1.012]"
+              className="transform rounded-xl bg-white p-6 shadow-md transition duration-300 ease-in-out hover:shadow-xl"
             >
-              <h3 className="mb-1 text-xl font-bold text-indigo-600">
-                {feature}
+              <h3 className="mb-1 text-xl font-bold text-indigo-700">
+                {feature.title}
               </h3>
-              <p className="text-gray-600">
-                Our image identifier provides quick and accurate results with a
-                simple, easy-to-use interface.
-              </p>
+              <p className="text-gray-600">{feature.description}</p>
             </div>
           ))}
         </div>
