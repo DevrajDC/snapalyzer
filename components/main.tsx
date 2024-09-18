@@ -195,7 +195,7 @@ function Main() {
             {/* Ask Questions Input */}
             <div className="mb-8 w-full">
               <h4 className="mb-2 text-xl font-bold">
-                Ask a custom question about the image:
+                Ask a question about the image:
               </h4>
               <div className="flex w-full items-center justify-center gap-2">
                 <input
