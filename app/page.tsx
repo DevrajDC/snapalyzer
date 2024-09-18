@@ -4,7 +4,7 @@ import Main from "@/components/main";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen">
       {/* Header */}
       <Header />
 

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const navLinks = [
-  { href: "#", text: "Home" },
+  { href: "#home", text: "Try Now" },
   { href: "#how-it-works", text: "How It Works" },
   { href: "#features", text: "Features" },
 ];
@@ -9,17 +9,17 @@ const navLinks = [
 function Header() {
   return (
     <header className="bg-white shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Image
-              src="/image-logo.jpg"
+              src="/logo.png"
               alt="AI Image Analyzer Logo"
-              width={32}
-              height={32}
-              className="mr-1"
+              width={24}
+              height={24}
+              className="mr-2"
             />
-            <h1 className="text-lg font-bold text-blue-600">Snapalyze</h1>
+            <h1 className="text-base text-indigo-600">Snapalyzer</h1>
           </div>
           <nav>
             <ul className="flex space-x-4">
@@ -27,7 +27,7 @@ function Header() {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-gray-600 hover:text-blue-600 text-sm font-medium transition duration-150 ease-in-out"
+                    className="text-sm font-bold text-gray-600 transition duration-150 ease-in-out hover:text-indigo-600"
                   >
                     {link.text}
                   </a>

@@ -145,27 +145,33 @@ function Main() {
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-      <div className="overflow-hidden rounded-xl bg-white shadow-xl">
+      {/* Home Section */}
+      <div id="home" className="overflow-hidden rounded-xl bg-white shadow-xl">
         <div className="p-8">
-          <h2 className="mb-8 text-center text-3xl font-extrabold text-gray-900 underline decoration-blue-500 decoration-wavy underline-offset-8">
-            Analyze Your Image
-          </h2>
+          <h1 className="m-auto mb-2 text-center text-indigo-600">
+            Snapalyzer
+          </h1>
+          <p className="mx-auto mb-8 w-full text-center sm:w-1/2">
+            AI-powered image analysis tool that helps users understand and
+            analyze images with ease.
+          </p>
           <div className="mb-4">
-            {/* Upload Image */}
-            <label
-              htmlFor="image-upload"
-              className="mb-2 block text-sm font-bold text-gray-700"
-            >
-              Upload an image:
-            </label>
-            <div className="relative">
+            {/* Upload Image Input */}
+            <div className="relative flex flex-col items-center justify-center gap-1 rounded-3xl border border-indigo-200 p-1 sm:flex-row">
               <input
                 id="image-upload"
                 type="file"
                 accept="image/*"
                 onChange={handleImageUpload}
-                className="block w-full cursor-pointer rounded-3xl border border-dotted border-blue-200 p-1 text-sm text-gray-500 transition duration-150 ease-in-out file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
+                className="block w-full cursor-pointer text-sm text-gray-500 transition duration-150 ease-in-out file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-indigo-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-indigo-700 hover:file:bg-indigo-100"
               />
+              <button
+                onClick={() => analyzeImage()}
+                disabled={!image || loading}
+                className="w-full whitespace-nowrap rounded-3xl bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition duration-150 ease-in-out hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50 sm:w-fit"
+              >
+                {loading ? "Analyzing..." : "Analyze Image"}
+              </button>
             </div>
           </div>
 
@@ -181,20 +187,11 @@ function Main() {
               />
             </div>
           )}
-
-          {/* Button to analyze the image */}
-          <button
-            onClick={() => analyzeImage()}
-            disabled={!image || loading}
-            className="text-md w-full rounded-3xl bg-blue-600 px-4 py-2 font-medium text-white transition duration-150 ease-in-out hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            {loading ? "Analyzing..." : "Analyze Image"}
-          </button>
         </div>
 
         {/* Display the Result */}
         {result && (
-          <div className="border-t border-blue-200 bg-blue-50/80 p-8">
+          <div className="border-t border-indigo-200 bg-indigo-50/40 p-8">
             {/* Ask Questions Input */}
             <div className="mb-8 w-full">
               <h4 className="mb-2 text-xl font-bold">
@@ -207,12 +204,12 @@ function Main() {
                   value={question}
                   placeholder="Enter a question..."
                   onChange={(e) => setQuestion(e.target.value)}
-                  className="block w-full rounded-lg border border-gray-500 bg-white px-4 py-2 pr-8 text-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+                  className="block w-full rounded-lg border border-gray-500 bg-white px-4 py-2 pr-8 text-sm focus:border-indigo-600 focus:outline-none focus:ring-indigo-600"
                 />
                 <button
                   onClick={() => regenerateContent(question)}
                   disabled={!question.trim() || loading}
-                  className="w-fit cursor-pointer whitespace-nowrap rounded-lg bg-blue-600 px-6 py-2 text-sm font-medium text-white transition duration-150 ease-in-out hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="w-fit cursor-pointer whitespace-nowrap rounded-lg bg-indigo-600 px-6 py-2 text-sm font-medium text-white transition duration-150 ease-in-out hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {loading ? "Analyzing..." : "Ask Question"}
                 </button>
@@ -222,14 +219,14 @@ function Main() {
             {/* Result Display */}
             <h3 className="mb-2 text-xl font-bold">Image Information:</h3>
             {!loading && (
-              <div className="prose prose-blue max-w-none">
+              <div className="prose prose-indigo max-w-none">
                 {result.split("\n").map((line, index) => {
                   if (
                     line.startsWith("Important Information:") ||
                     line.startsWith("Other Information:")
                   ) {
                     return (
-                      <h4 key={index} className="mb-2 mt-4 text-xl font-bold">
+                      <h4 key={index} className="my-2 text-xl font-bold">
                         {line}
                       </h4>
                     );
@@ -244,7 +241,7 @@ function Main() {
                     );
                   } else if (line.trim() !== "") {
                     return (
-                      <p key={index} className="mb-2 text-gray-800">
+                      <p key={index} className="my-2 text-gray-800">
                         {line}
                       </p>
                     );
@@ -257,9 +254,10 @@ function Main() {
             {/* Skeleton Loader */}
             {loading && (
               <div className="mb-8 mt-6 flex flex-col justify-center gap-3">
-                <div className="h-3 w-full animate-pulse rounded-xl bg-blue-200"></div>
-                <div className="h-3 w-full animate-pulse rounded-xl bg-blue-200"></div>
-                <div className="h-3 w-1/2 animate-pulse rounded-xl bg-blue-200"></div>
+                <div className="h-3 w-full animate-pulse rounded-xl bg-indigo-200"></div>
+                <div className="h-3 w-full animate-pulse rounded-xl bg-indigo-200"></div>
+                <div className="h-3 w-full animate-pulse rounded-xl bg-indigo-200"></div>
+                <div className="h-3 w-1/2 animate-pulse rounded-xl bg-indigo-200"></div>
               </div>
             )}
 
@@ -271,7 +269,7 @@ function Main() {
                   <button
                     key={index}
                     onClick={() => regenerateContent(keyword)}
-                    className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 transition duration-150 ease-in-out hover:bg-blue-200"
+                    className="rounded-full bg-indigo-50 px-3 py-1 text-sm font-medium text-indigo-800 transition duration-150 ease-in-out hover:bg-indigo-100"
                   >
                     #{keyword}
                   </button>
@@ -288,7 +286,7 @@ function Main() {
                     <li key={index}>
                       <button
                         onClick={() => askRelatedQuestion(question)}
-                        className="w-full rounded-lg bg-blue-100 px-4 py-2 text-left text-sm font-medium text-blue-800 transition duration-150 ease-in-out hover:bg-blue-200"
+                        className="w-full rounded-lg bg-indigo-50 px-4 py-2 text-left text-sm font-medium text-indigo-800 transition duration-150 ease-in-out hover:bg-indigo-100"
                       >
                         {question}
                       </button>
@@ -312,7 +310,7 @@ function Main() {
               key={index}
               className="transform rounded-xl bg-white p-6 shadow-md transition duration-300 ease-in-out hover:scale-[1.015]"
             >
-              <div className="mb-4 text-4xl font-bold text-blue-600">
+              <div className="mb-4 text-4xl font-bold text-indigo-600">
                 0{index + 1}
               </div>
               <h3 className="mb-1 text-xl font-bold text-gray-800">{step}</h3>
@@ -341,7 +339,7 @@ function Main() {
               key={index}
               className="transform rounded-xl bg-white p-6 shadow-md transition duration-300 ease-in-out hover:scale-[1.012]"
             >
-              <h3 className="mb-1 text-xl font-bold text-blue-600">
+              <h3 className="mb-1 text-xl font-bold text-indigo-600">
                 {feature}
               </h3>
               <p className="text-gray-600">
