@@ -221,36 +221,47 @@ function Main() {
 
             {/* Result Display */}
             <h3 className="mb-2 text-xl font-bold">Image Information:</h3>
-            <div className="prose prose-blue max-w-none">
-              {result.split("\n").map((line, index) => {
-                if (
-                  line.startsWith("Important Information:") ||
-                  line.startsWith("Other Information:")
-                ) {
-                  return (
-                    <h4 key={index} className="mb-2 mt-4 text-xl font-bold">
-                      {line}
-                    </h4>
-                  );
-                } else if (line.match(/^\d+\./) || line.startsWith("-")) {
-                  return (
-                    <li
-                      key={index}
-                      className="mb-2 ml-4 list-disc text-gray-700"
-                    >
-                      {line}
-                    </li>
-                  );
-                } else if (line.trim() !== "") {
-                  return (
-                    <p key={index} className="mb-2 text-gray-800">
-                      {line}
-                    </p>
-                  );
-                }
-                return null;
-              })}
-            </div>
+            {!loading && (
+              <div className="prose prose-blue max-w-none">
+                {result.split("\n").map((line, index) => {
+                  if (
+                    line.startsWith("Important Information:") ||
+                    line.startsWith("Other Information:")
+                  ) {
+                    return (
+                      <h4 key={index} className="mb-2 mt-4 text-xl font-bold">
+                        {line}
+                      </h4>
+                    );
+                  } else if (line.match(/^\d+\./) || line.startsWith("-")) {
+                    return (
+                      <li
+                        key={index}
+                        className="mb-2 ml-4 list-disc text-gray-700"
+                      >
+                        {line}
+                      </li>
+                    );
+                  } else if (line.trim() !== "") {
+                    return (
+                      <p key={index} className="mb-2 text-gray-800">
+                        {line}
+                      </p>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            )}
+
+            {/* Skeleton Loader */}
+            {loading && (
+              <div className="mb-8 mt-6 flex flex-col justify-center gap-3">
+                <div className="h-3 w-full animate-pulse rounded-xl bg-blue-200"></div>
+                <div className="h-3 w-full animate-pulse rounded-xl bg-blue-200"></div>
+                <div className="h-3 w-1/2 animate-pulse rounded-xl bg-blue-200"></div>
+              </div>
+            )}
 
             {/* Related Keywords */}
             <div className="mt-6">
