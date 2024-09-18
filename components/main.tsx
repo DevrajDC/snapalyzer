@@ -157,7 +157,7 @@ function Main() {
           </p>
           <div className="mb-4">
             {/* Upload Image Input */}
-            <div className="relative flex flex-col items-center justify-center gap-1 rounded-3xl border border-indigo-200 p-1 sm:flex-row">
+            <div className="relative mx-auto flex w-full flex-col items-center justify-center gap-1 rounded-3xl border border-indigo-200 p-1 sm:w-[80%] sm:flex-row">
               <input
                 id="image-upload"
                 type="file"
